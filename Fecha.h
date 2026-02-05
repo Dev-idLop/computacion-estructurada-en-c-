@@ -20,6 +20,8 @@ class Fecha
     public:
 
     /** Constructores (semana 3) */
+    Fecha() : dia(1), mes(1), annio(2000) {}
+
 
     private:
     /** Getters & setters (basic accesors & mutators) */
@@ -27,27 +29,76 @@ class Fecha
     /// valor erroneo a cualquiera de los atributos.
     /// Para los setters, regresa verdadero si el cambio fue exitoso, falso si el parametro fue invalido
     short get_dia  () const
-    {}
+    {
+        return dia;
+    }
     bool  set_dia  (short d, short max = 31)
-    {}
+    {
+
+        if (mes == 2 && annio % 4 == 0 && (annio % 100 != 0 || annio % 400 == 0))
+            max = 29;
+        else if (mes == 2)
+            max = 28;
+        else if (mes == 4 || mes == 6 || mes == 9 || mes == 11)
+            max = 30;
+        else
+            max = 31;
+
+        if (d < 1 || d > max)
+            return false;
+        dia = d;
+        return true;
+
+
+    }
     short get_mes  () const
-    {}
+    {
+        return mes;
+    }
     bool  set_mes  (short m)
-    {}
+    {
+        if (m < 1 || m > 12)
+            return false;
+        mes = m;
+        return true;
+    }
     short get_annio() const
-    {}
+    {
+        return annio;
+    }
     bool  set_annio(short a)
-    {}
+    {
+        if (a <= 1)
+            return false;
+        annio = a;
+        return true;
+    }
 
     public:
+    
     /** Accesors */
     /// Metodos que permiten leer el contenido de Fecha, no necesariamente igual que los getters
     std::string get_fecha (bool extra = false) const
     {
         /// Convierte los atributos dia, mes, annio, en un solo valor de tipo string que contiene
-        /// la representación de la fecha en formato "dd/mm/aaaa"
+        /// la representaciï¿½n de la fecha en formato "dd/mm/aaaa"
         /// PUNTOS EXTRA, si logras imprimir un formato adicional "dd-MES-aaaa" (3 primeras letras del mes)
+        
+        std::string dia_s = std:: to_string(dia);
+        std::string annio_s = std:: to_string(annio);
+        std::string meses[] = {
+            "Ene", "Feb", "Mar", "Abr", "May", "Jun",
+            "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+        };
+
         std::string retVal;
+            if (extra){
+                retVal = dia_s + "-" + meses[mes - 1] + "-" + annio_s;
+            }
+            else {
+                retVal = dia_s + "/" + std:: to_string(mes) + "/" + annio_s;
+            }
+
         return retVal;
     }
 
@@ -58,7 +109,7 @@ class Fecha
     {
         /// Invoca los setters para asegurar que los valores siempre estan dentro de rango.
         /// retorna si todos los setters se ejecutaron sin problema o no.
-        /// PUNTOS EXTRA, si puedes usar el mes y año actual en vez de los defaults invalidos.
+        /// PUNTOS EXTRA, si puedes usar el mes y aï¿½o actual en vez de los defaults invalidos.
         return false;
     }
 

@@ -1,5 +1,5 @@
 /// (C) 2019 - 2025
-///@author Carlos Ramon Patiño
+///@author Carlos Ramon Patiï¿½o
 /// Include con <pointy-brakets> jala clases de la libreria estandar
 #include <iostream>
 #include <cstdlib>
