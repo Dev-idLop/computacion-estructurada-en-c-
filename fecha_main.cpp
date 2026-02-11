@@ -9,7 +9,7 @@
 
 int main(){
     using namespace std;
-
+ 
     Fecha hoy;
     short d, m, a;
     int cuenta = 0;

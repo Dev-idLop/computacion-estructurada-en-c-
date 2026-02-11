@@ -1,0 +1,10 @@
+# VS Code
+.vscode/
+
+# C++ build files
+*.o
+*.obj
+*.exe
+*.out
+build/
+bin/

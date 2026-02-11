@@ -110,8 +110,18 @@ class Fecha
         /// Invoca los setters para asegurar que los valores siempre estan dentro de rango.
         /// retorna si todos los setters se ejecutaron sin problema o no.
         /// PUNTOS EXTRA, si puedes usar el mes y a�o actual en vez de los defaults invalidos.
-        return false;
-    }
+        // Primero invocamos el setter del a�o, ya que el valor del a�o es necesario para validar el dia
+        if (a != INVALID_YEAR && !set_annio(a))
+        //despues el setter del mes, ya que el valor del mes es necesario para validar el dia
+            return false;
+        if (m != INVALID_MONTH && !set_mes(m))
+        //despues el setter del dia, ya que el valor del dia es necesario para validar el mes
+            return false;
+        if (d != INVALID_DAY && !set_dia(d))
+            return false;
+
+        return true;
+    } 
 
 };
 
