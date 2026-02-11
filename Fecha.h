@@ -20,7 +20,31 @@ class Fecha
     public:
 
     /** Constructores (semana 3) */
-    Fecha() : dia(1), mes(1), annio(2000) {}
+    Fecha() : dia(1), mes(1), annio(1970) {}
+
+    //Constructor con parametros
+Fecha(short d, short m, short a) : Fecha()
+{
+    if (!set_fecha(d, m, a)) {
+        dia = 1;
+        mes = 1;
+        annio = 1970;
+    }
+}
+  
+
+
+    //3.Constructor Copia: Recibe como único parámetro una referencia a otro objeto fecha previamente creado,
+    // y lo usa como ejemplo para copiar todos sus valores internos (de manera similar al método Object.clone() de Java).
+        Fecha(const Fecha& f){
+            dia = f.dia;
+            mes = f.mes;
+            annio = f.annio;
+        }
+    
+    
+
+
 
 
     private:
@@ -68,7 +92,7 @@ class Fecha
     }
     bool  set_annio(short a)
     {
-        if (a <= 1)
+        if (a < 1)
             return false;
         annio = a;
         return true;
